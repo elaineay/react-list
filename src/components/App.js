@@ -1,12 +1,10 @@
-import React from 'react';  
-import ListInput from './ListInput';
-import ListItem from '.ListItem';
+import React from 'react';
+import ListFull from './ListFull';
 
-const App = () => {
+function App () {
   return (
-    <div>
-      <ListInput/>
-      <ListItem/>
+    <div className="app">
+      <ListFull/>
     </div>
   );
 }

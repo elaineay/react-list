@@ -1,17 +1,7 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux'
+import input from './items'
 
-const listReducer = (list = [], action) => {
-    if (action.type === 'LIST_APPENDER') {
-        return [
-            ...list,
-            {id: action.id,
-            text: action.item}
-        ]
-            
-    }
-    return list;
-};
 
-export default combineReducers({
-    list: listReducer
+export default combineReducers ({
+    input
 })
