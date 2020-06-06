@@ -1,3 +1,22 @@
 .listFull {
-      text-align: center;
+      text-align: left;
+      margin: 20px;
+}
+
+.header {
+      background-color: white;
+}
+
+.listItems {
+      background-color: white;
+}
+
+.purpleSmiley {
+      background-color: purple;
+      color: white;
+}
+
+.blackSmiley {
+      background-color: black;
+      color: white;
 }

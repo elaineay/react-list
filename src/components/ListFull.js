@@ -10,13 +10,24 @@ class ListFull extends React.Component {
     input: {
       text: ""
     },
-    curr: ""
+    curr: "",
+    isContrast: true
   }
 
   render() {
+    let change = this.state.isContrast ? "purpleSmiley" : "blackSmiley";
+
     return (
       <div className="listFull">
-        <h1>My Todo List</h1>
+        <div className="header">
+          <span>
+            My Todo List: click me! -->
+          </span>
+          <button className={change} onClick = {() => this.changeColour()}> 
+              :)
+          </button>
+        </div>
+        
         <form>
           <input id = "formInput" type="text"
           onChange = {this.onChangeEvent} value = {this.state.input.text}/>
@@ -24,7 +35,7 @@ class ListFull extends React.Component {
           <input type = "submit" value = "Add Item" onClick = {this.onAdd}/>
         </form>
 
-        <ul id = "listItems">
+        <ul className = "listItems">
           { this.props.inputs.map ( item => (
             <li key = {item.id} onClick = {() =>this.expandItem(item)}>
               {item.text}
@@ -37,6 +48,10 @@ class ListFull extends React.Component {
           <ListItem curr = {this.state.curr}></ListItem>
       </div>
     )
+  }
+
+  changeColour() {
+    this.setState({isContrast: !this.state.isContrast})
   }
 
   onAdd = event => {
