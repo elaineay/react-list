@@ -1,17 +1,19 @@
-const itemExpansions = (
+function input (
       state = [
-            {id: 0, text: "example list item"},
-            {id: 1, text: "example 2"},
-            {id: 2, text: "example 3"}
-      ], action) => {
+            {id: 0, size: "medium", text: "Dog spotted: golden retriever."},
+            {id: 1, size: "medium", text: "Huskies at the park!"},
+            {id: 2, size: "medium", text: "A hypoallergenic king was spotted. 10/10 fluff."}
+      ], action) {
       switch (action.type) {
           case 'ADD_ITEM':
               return [
-                  ...state,
-                  {
-                        ...action.text,
-                  }
-              ]
+                    ...state,
+                    {
+                    size: action.size,
+                    text: action.text
+                    }
+                ]   
+              
   
           case 'DELETE_ITEM':
               return [...state].filter((post) => {
@@ -23,4 +25,4 @@ const itemExpansions = (
       }
   }
 
-  export default itemExpansions
+  export default input

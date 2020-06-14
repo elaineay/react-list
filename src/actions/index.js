@@ -1,8 +1,9 @@
 let nextItemId = 3
 
-export const addItem = text => ({
+export const addItem = (size, text) => ({
     type: 'ADD_ITEM',
     id: nextItemId++,
+    size,
     text
 })
 

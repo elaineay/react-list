@@ -4,19 +4,38 @@
 }
 
 .header {
+      color: cornflowerblue;
+      text-align: center;
+      font-size: x-large;
+      padding: 10px;
+}
+
+.whiteBoop {
       background-color: white;
+      color: black;
+}
+
+.blackBoop {
+      background-color: black;
+      color: white;
+}
+
+.formInput {
+      text-align: center;
 }
 
 .listItems {
       background-color: white;
 }
 
-.purpleSmiley {
-      background-color: purple;
-      color: white;
+.size {
+      color: sandybrown;
+      margin-right: 10px;
 }
 
-.blackSmiley {
-      background-color: black;
-      color: white;
+.delete {
+      float: right;
+      margin-right: 20px;
+      background-color: sandybrown;
 }
+

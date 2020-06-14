@@ -8,57 +8,89 @@ import './ListFull.css';
 class ListFull extends React.Component {
   state = {
     input: {
+      size: "",
       text: ""
     },
     curr: "",
-    isContrast: true
+    isBoop: true
   }
 
   render() {
-    let change = this.state.isContrast ? "purpleSmiley" : "blackSmiley";
+    let change = this.state.isBoop ? "whiteBoop" : "blackBoop";
 
     return (
       <div className="listFull">
         <div className="header">
-          <span>
-            My Todo List: click me! -->
-          </span>
-          <button className={change} onClick = {() => this.changeColour()}> 
-              :)
-          </button>
+          <strong>
+            DogSpotting Tracker
+          </strong>
+          <div>
+            <button className={change} onClick = {() => this.changeColour()}> 
+              metaphorical snout boop
+            </button>
+          </div>
         </div>
         
-        <form>
-          <input id = "formInput" type="text"
-          onChange = {this.onChangeEvent} value = {this.state.input.text}/>
+        <div className = "formInput">
+          <form>
+            <select name = "size" value = {this.state.input.size}
+                onChange = {this.onChangeEvent}>
+              <option value = "size unknown">Pick Pupper Size!</option>
+              <option value = "smol">Smol</option>
+              <option value = "medium">Medium</option>
+              <option value = "chonk">Chonk</option>
+            </select>
 
-          <input type = "submit" value = "Add Item" onClick = {this.onAdd}/>
-        </form>
+            <input name = "text" type ="text" value = {this.state.input.text} 
+                onChange = {this.onChangeEvent}/>
+
+            <input type = "submit" value = "Dog spotted!" onClick = {this.onAdd}/>
+          </form>
+        </div>
+        
 
         <ul className = "listItems">
           { this.props.inputs.map ( item => (
-            <li key = {item.id} onClick = {() =>this.expandItem(item)}>
+            <p key = {item.id} onClick = {() =>this.expandItem(item)}>
+              <span className="size">
+                {item.size}
+              </span>
+              
               {item.text}
-              <span className="delete" onClick={() =>
-                this.deleteItem(item)}> [Delete Item] </span></li>
+              
+              <span className="delete" onClick={() => this.deleteItem(item)}> 
+                [Delete] 
+              </span>
+            </p>
           ))}
-          </ul>
+        </ul>
 
-          <h3>More Information:</h3>
+        <div className="header">
+          <span>More Information:</span>
+        </div>
           <ListItem curr = {this.state.curr}></ListItem>
       </div>
     )
   }
 
   changeColour() {
-    this.setState({isContrast: !this.state.isContrast})
+    this.setState({isBoop: !this.state.isBoop})
   }
 
   onAdd = event => {
     event.preventDefault();
-    this.props.dispatch(actions.addItem(this.state.input));
-    const item = { id: this.state.input.id, text: this.state.input.text };
-    this.setState({item});
+    this.props.dispatch(actions.addItem(this.state.input.size, this.state.input.text));
+
+    this.setState({
+      input: {
+        size: "",
+        text: ""
+      }
+    });
+
+    // this part sets things to local --> specific to component only
+    // const item = { id: this.state.input.id, text: this.state.input.text };
+    // this.setState({item});
   }
 
   deleteItem(input) {
@@ -73,9 +105,9 @@ class ListFull extends React.Component {
   onChangeEvent = event => {
     const input = {
       ...this.state.input,
-      text: event.target.value
-    };
-    this.setState({input});
+      [event.target.name]: event.target.value
+    }
+    this.setState ({input});
   }
 }
 
